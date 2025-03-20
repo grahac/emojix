@@ -72,7 +72,8 @@ defmodule Emojix.Repo do
   end
 
   defp search_by(table, field, value) do
+    downcased_value = String.downcase(value)
     select_all(table)
-    |> Enum.filter(fn emoji -> Map.get(emoji, field) |> String.contains?(value) end)
+    |> Enum.filter(fn emoji -> Map.get(emoji, field) |> String.contains?(downcased_value) end)
   end
 end

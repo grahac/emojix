@@ -6,7 +6,7 @@ defmodule Emojix.DataLoader do
   require IEx
   alias Mint.HTTP
 
-  @emoji_version "15.2.0"
+  @emoji_version "16.0.2"
   @download_host "cdn.jsdelivr.net"
   @download_path "/npm/emojibase-data@#{@emoji_version}/en/compact.json"
   @download_shortcodes "/npm/emojibase-data@#{@emoji_version}/en/shortcodes/iamcal.json"
@@ -100,7 +100,7 @@ defmodule Emojix.DataLoader do
     %Emojix.Emoji{
       id: emoji.order,
       hexcode: emoji.hexcode,
-      description: emoji.label,
+      description: String.downcase(emoji.label),
       shortcodes: List.wrap(shortcodes),
       unicode: emoji.unicode,
       tags: Map.get(emoji, :tags, []),
