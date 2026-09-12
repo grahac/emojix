@@ -7,14 +7,14 @@ jobs:
     name: mix test (Elixir ${{ matrix.elixir }} OTP ${{ matrix.otp }})
     strategy:
       matrix:
-        elixir: ["1.9.1"]
+        elixir: ["1.20.2"]
         include:
-          - elixir: "1.9.1"
-            otp: "22.x"
-    runs-on: ubuntu-16.04
+          - elixir: "1.20.2"
+            otp: "28"
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-elixir@v1.0.0
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
         with:
           otp-version: ${{ matrix.otp }}
           elixir-version: ${{ matrix.elixir }}
